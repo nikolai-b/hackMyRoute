@@ -1,6 +1,6 @@
 ---
 title: 'Proposal: an online tool for cycle policy planning and public engagement'
-author: "Robin Lovelace (University of Leeds), Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets.net)"
+author: "Dr. Robin Lovelace (University of Leeds), Dr. Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets.net)"
 date: "February 7, 2015"
 output:
   pdf_document:
@@ -30,11 +30,33 @@ power of online, interactive map visualisation technology.
 # Todo: add link to the wicid website here
 ```
 
-# Problem
+# Aims
 
-There is a clear need for a solid evidence base for prioritising new cycling
-investment. (Policy stuff e.g. CDP.) At a time of fiscal restraint and increased
-increased investment in active travel, 
+When deciding between a number of competing cycle paths we aim to build
+a tool to visualise different metrics of the areas involved.
+One path may run through an area with a current low cycling rate that
+is surrounded by areas of a high cycle rate, one may have a medium cycle rate
+but have large propensity to cycle rate with the connecting location.  Having all
+of these datasets available in a simple online tool could help decide which
+paths could have the most impact.  This would allow tapping into a currently existing
+open data to create an evidence base to support better decision making.
+
+This would not simply be using currently available data as there may be many other
+metrics that a planner would like to have access to.  The tool would also have the
+ability to create their own custom metric based on the available data.
+We propose to create this map for Leeds.
+
+This project will design, build, implement an online map-based tool.  We will
+combine various datasets and will create a simple process for adding custom
+data to the map.  The map display will have a simple user interface
+allowing the user to select datasets of interest using heatmaps and markers.
+We propose an agile development methodology where the datasets of interest and layout
+would be subject to a process of continual feedback and refinement so that
+the end result would not be a static piece of software but a collaborative process
+between the developers and the planners.
+
+
+# Why is this different to current software?
 
 The 'open data' revolution has greatly increased access to data.
 This can benefit transport planners, if they have access to appropriate and
@@ -42,23 +64,12 @@ user-friendly tools, built on a strong evidence base and accessible to public
 scrutiny.
 Propensity to cycle, for example, is a critical metric in deciding where
 to target new interventions and can be calculated by harnessing the
-flow data and census databases mentione previously. 
-
+flow data and census databases mentioned previously.
+Extracting useful *information* and *knowledge* from diverse datasets
+requires specialist skills to analyse. This is a major barrier to entry for
+transport planners, policy makers and stakeholders from civil society.
 In addition, new datasets continue to emerging that could aid transport planner
 and there is a cost associated with adding this to current tools.
-
-Extracting useful *information* and *knowledge* from diverse datasets 
-requires specialist skills to analyse. This is a major barrier to entry for 
-transport planners, policy makers and stakeholders from civil society.
-
-# Aims
-
-This project will design, build, implement an online map-based tool.  We will 
-combine various datasets and will create a simple process for adding custom 
-data to the map.  The map display will have a simple user interface
-allowing the user to select datasets of interest using heatmaps and markers.
-We propose an agile development methodology where the datasets of interest and layout
-would be subject to a process of continual feedback and refinement.
 
 # Example uses
 
@@ -74,7 +85,7 @@ grid.raster(img)
 
 \clearpage
 
-# Appendix: data sources 
+# Appendix: data sources
 
 The data used for this project is publicly available. We selected datasets based
 on their ability to help explain the high or low rate of cycling in different
