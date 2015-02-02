@@ -22,7 +22,7 @@ class CycleStreet
       key: @token,
       plan: 'fastest',
       itinerarypoints: "#{orig.lat},#{orig.long}|#{dest.lat},#{dest.long}",
-      segments: 0,
+      segments: '0',
     })
   end
 end
