@@ -1,28 +1,46 @@
 require 'httparty'
-
-Coordinate = Struct.new(:lat, :long)
+require './coordinate'
+require './route_store'
 
 class CycleStreet
   include HTTParty
   base_uri 'http://www.cyclestreets.net/'
+  attr_reader :token, :store
   #debug_output $stdout
 
   def initialize(token)
     @token = token
+    @store = RouteStore.new
   end
 
-  def get_route
-    orgi = Coordinate.new(-1.382217, 53.836727)
-    dest = Coordinate.new(-1.495513, 53.861031)
-    route(orgi, dest)
+  def query
+    store.open do |orig, dest|
+      if orig == dest
+        fast = {'time' => 0, 'length' => 0}
+        quiet = fast
+      else
+        fast = route(orig, dest, 'fastest')
+        quiet = route(orig, dest, 'quietest')
+      end
+      store.save << [
+        orig.lat, orig.long,
+        dest.lat, dest.long,
+        fast['time'], fast['length'],
+        quiet['time'], quiet['length'],
+      ]
+    end
   end
 
-  def route(orig, dest)
-    self.class.get('/api/journey.xml', query: {
-      key: @token,
-      plan: 'fastest',
+  private
+
+  def route(orig, dest, plan)
+    res = self.class.get('/api/journey.xml', query: {
+      key: token,
+      plan: plan,
       itinerarypoints: "#{orig.lat},#{orig.long}|#{dest.lat},#{dest.long}",
       segments: '0',
     })
+    puts [orig, dest, plan, res]
+    res['markers']['marker']
   end
 end

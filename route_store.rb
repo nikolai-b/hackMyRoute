@@ -1,4 +1,5 @@
 require 'csv'
+require './coordinate'
 
 class RouteStore
   attr_reader :in_path, :out_path
@@ -10,12 +11,12 @@ class RouteStore
   end
 
   def open
-    CSV.foreach(in_path, 'w', headers: true, converters: :numeric) do |row|
+    CSV.foreach(in_path, headers: true, converters: :numeric) do |row|
       yield Coordinate.new(row['lat_origin'], row['lon_origin']), Coordinate.new(row['lat_dest'], row['lon_dest'])
     end
   end
 
   def save
-    csv_out ||= CSV::Writer.generate(out_path)
+    csv_out ||= CSV.open(out_path, 'w')
   end
 end
