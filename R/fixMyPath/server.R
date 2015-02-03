@@ -1,15 +1,10 @@
-pkgs <- c("rgdal", "rgeos", "shiny", "leaflet", "dplyr")
+pkgs <- c("rgdal", "rgeos", "shiny", "leaflet", "dplyr", "ggmap")
 reqs <- as.numeric(lapply(pkgs, require, character.only = TRUE))
-# Install packages we require
-if(sum(!reqs) > 0) install.packages(pkgs[!reqs])
 
-# Load data
-leeds <- readRDS("~/repos/pct/pct-data/leeds/leeds-msoas-simple.Rds") %>%
-  spTransform(CRS("+init=epsg:4326"))
+# leeds <- readRDS("leeds-msoas-simple.Rds") %>%
+#   spTransform(CRS("+init=epsg:4326"))
 
-map_centre <- leeds %>%
-  gCentroid() %>%
-  coordinates()
+map_centre <- geocode("leeds")
 
 function(input, output){
 
@@ -22,12 +17,11 @@ function(input, output){
 
   map = leaflet() %>%
     addTiles() %>%
-    setView(lng = map_centre[1], lat = map_centre[2], zoom = 11, ) %>%
-    addPolygons(data = leeds)
-#     addPolylines()
+    setView(lng = map_centre[1], lat = map_centre[2], zoom = 11, )
+  # %>%
+    # addPolygons(data = leeds)
+    # addPolylines()
   #     addPopups(-1.549, 53.8, 'First ever popup in leaflet') # add popup
 
   output$myMap = renderLeaflet(map)
-  output$text = renderText(a())
-
 }
