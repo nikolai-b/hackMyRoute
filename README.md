@@ -6,7 +6,7 @@ To convert gml to geoJSON
 To run ruby and bundler are prerequisitss
 Prerequisites: ruby and bundler.  Then `bundle install`
 To run in irb shell
-    require 'app/cycle_street'
+    require './app/cycle_street'
     cycle_street = CycleStreet.new
     cycle_street.query
 

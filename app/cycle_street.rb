@@ -5,16 +5,16 @@ require_relative './route_store'
 class CycleStreet
   include HTTParty
   base_uri 'http://www.cyclestreets.net/'
-  attr_reader :token, :store
+  attr_reader :token, :store, :dir
   #debug_output $stdout
 
-  def initialize(token = '231bb1eb320c1e66', in_file = File.join('data', 'msoa-flow-leeds-all.csv'),
-                 out_file = File.join('data', 'msoa-leeds-all-with_route.csv'))
-    @token = token
-    @store = RouteStore.new(in_file, out_file)
+  def initialize(token = '231bb1eb320c1e66', dir = 'data')
+    @token, @dir = token, dir
+    @store = RouteStore.new(File.join(dir, 'msoa-flow-leeds-all.csv'), File.join(dir, 'msoa-leeds-all-with-route.csv'))
   end
 
   def query
+    route_id = 0
     store.open do |route|
       if route.orig == route.dest
         fastest = {'time' => 0, 'length' => 0 }
@@ -27,9 +27,13 @@ class CycleStreet
       sleep(1) # don't hammer CycleStreets
 
       store.save do |csv|
-        csv << route.to_a +
+        csv << [route_id] + route.to_a +
           [fastest['time'], fastest['length'], quietest['time'], quietest['length']]
       end
+
+      File.open(File.join(dir, "#{route_id}-fast.txt"), 'w')  { |file| file.write(fastest['coordinates']) }
+      File.open(File.join(dir, "#{route_id}-quiet.txt"), 'w') { |file| file.write(quietest['coordinates']) }
+      route_id += 1
     end
   end
 
