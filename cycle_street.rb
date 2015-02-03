@@ -1,11 +1,12 @@
 require 'httparty'
 
+# Create coodinate reference system structure
 Coordinate = Struct.new(:lat, :long)
 
 class CycleStreet
   include HTTParty
   base_uri 'http://www.cyclestreets.net/'
-  #debug_output $stdout
+  # debug_output $stdout
 
   def initialize(token)
     @token = token
