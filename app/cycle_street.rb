@@ -43,7 +43,7 @@ class CycleStreet
     self.class.get('/api/journey.xml', query: {
       key: token,
       plan: plan,
-      itinerarypoints: "#{route.orig.lat},#{route.orig.long}|#{route.dest.lat},#{route.dest.long}",
+      itinerarypoints: "#{route.orig.long},#{route.orig.lat}|#{route.dest.long},#{route.dest.lat}",
       segments: '0',
     })['markers']['marker']
   end

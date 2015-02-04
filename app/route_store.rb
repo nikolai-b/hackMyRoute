@@ -19,14 +19,8 @@ class RouteStore
   end
 
   def save
-    wipe_file unless @wiped_file
     CSV.open(out_file, 'a') do |csv|
       yield csv
     end
-  end
-
-  def wipe_file
-    CSV.open(out_file, "w") {}
-    @wiped_file = true
   end
 end
