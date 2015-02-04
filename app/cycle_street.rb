@@ -1,10 +1,11 @@
 require 'httparty'
+require 'pry-byebug'
 require_relative './coordinate'
 require_relative './route_store'
 
 class CycleStreet
   include HTTParty
-  base_uri 'http://www.cyclestreets.net/'
+  base_uri 'https://api.cyclestreets.net/'
   attr_reader :token, :store, :dir
   #debug_output $stdout
 
@@ -40,11 +41,14 @@ class CycleStreet
   private
 
   def api_call(route, plan)
-    self.class.get('/api/journey.xml', query: {
+    resp = self.class.get('/v2/journey.plan', query: {
       key: token,
       plan: plan,
-      itinerarypoints: "#{route.orig.long},#{route.orig.lat}|#{route.dest.long},#{route.dest.lat}",
-      segments: '0',
-    })['markers']['marker']
+      waypoints: "#{route.orig.long},#{route.orig.lat}|#{route.dest.long},#{route.dest.lat}",
+      archive: 'full',
+      fields: 'itinerary',
+    })
+    binding.pry
+    resp['features'][0]
   end
 end
