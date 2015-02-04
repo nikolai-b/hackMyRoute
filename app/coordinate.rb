@@ -2,6 +2,10 @@ Coordinate = Struct.new(:long, :lat) do
   def ==(other)
     self.long.round(5) == other.long.round(5) && self.lat.round(5) == other.lat.round(5)
   end
+
+  def to_a
+    [long, lat]
+  end
 end
 
 Route = Struct.new(:orig, :dest) do
