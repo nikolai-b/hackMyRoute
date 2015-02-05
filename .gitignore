@@ -1,0 +1,6 @@
+.Rproj.user
+.Rhistory
+.RData
+R/fixMyPath/rsconnect/
+*.dcf
+local-data/
