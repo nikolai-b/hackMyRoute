@@ -1,27 +1,23 @@
-pkgs <- c("rgdal", "rgeos", "shiny", "leaflet", "dplyr", "ggmap")
-reqs <- as.numeric(lapply(pkgs, require, character.only = TRUE))
+library(shiny)
+library(leaflet)
+library(ggmap)
+library(rgdal)
 
-# leeds <- readRDS("leeds-msoas-simple.Rds") %>%
-#   spTransform(CRS("+init=epsg:4326"))
+# Load data
+map_centre <- geocode("Leeds")
+l <- readRDS("al.Rds")
 
-map_centre <- geocode("leeds")
+leeds <- readRDS("leeds-msoas-simple.Rds") %>%
+  spTransform(CRS("+init=epsg:4326"))
 
 function(input, output){
-
-  a <- reactive({input$display})
-  # a <- input$display
-  # What's loaded?
-#   if(a()){
-#     leeds <- leeds[1,]
-#   }
-
-  map = leaflet() %>%
+  map = leaflet(data = l) %>%
     addTiles() %>%
-    setView(lng = map_centre[1], lat = map_centre[2], zoom = 11, )
-  # %>%
-    # addPolygons(data = leeds)
-    # addPolylines()
+    setView(lng = map_centre[1], lat = map_centre[2], zoom = 10) %>%
+    addPolygons(data = leeds) %>%
+    addPolylines(color = "red")
   #     addPopups(-1.549, 53.8, 'First ever popup in leaflet') # add popup
 
   output$myMap = renderLeaflet(map)
+
 }

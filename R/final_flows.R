@@ -77,5 +77,7 @@ for(i in fns){
   }
 }
 
-plot(al[-1,])
-writeOGR(al, layer = "shape1", dsn = "/tmp/", driver = "ESRI Shapefile")
+al <- al[-1,]
+plot(al)
+# writeOGR(al, layer = "shape1", dsn = "/tmp/", driver = "ESRI Shapefile")
+saveRDS(al, "R/fixMyPath/al.Rds")
