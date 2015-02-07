@@ -38,7 +38,6 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
     geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
     output$myMap = renderLeaflet(leaflet() %>%
       addTiles() %>%
-      setView(lng = map_centre[1], lat = map_centre[2], zoom = 10) %>%
       addPolygons(data = leeds
         , fillOpacity = 0.4
         , opacity = input$transp_zones
