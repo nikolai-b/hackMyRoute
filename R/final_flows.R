@@ -29,8 +29,25 @@ flows <- cbind(ids, fl, f)
 # Is this the final df?
 summary(flows$dist) # na - we kanye be doing with 0 dists
 flows <- flows[flows$dist > 10, ]
+summary(flows$dist)
 
 head(flows) # yay we have the final data frame
+
+flows <- flows[ flows$dist < 8000, ]
+# write.csv(flows, "R/fixMyPath/flows.csv")
+
+# points to lines
+l <- vector("list", nrow(flows))
+for(i in 1:nrow(flows)){
+  x <- c(flows$lon_origin[i], flows$lon_dest[i])
+  y <- c(flows$lat_origin[i], flows$lat_dest[i])
+  l[[i]] <- Lines(list(Line(rbind(x, y))), as.character(i))
+}
+
+l <- SpatialLines(l)
+l <- SpatialLinesDataFrame(l, data = flows, match.ID = F)
+object.size(l) / 1000000
+saveRDS(l, "R/fixMyPath/lines.Rds")
 
 # # # # # # # # # # # # #  #
 # Extract the ones to plot #

@@ -12,5 +12,6 @@ fluidPage(
       # , selectInput("colour", "Colour of paths", choices = c("red", "blue", "black"))
 
     ),
-    mainPanel(leafletOutput('myMap'))
+    mainPanel(
+      leafletOutput('myMap', height = 600))
   ))

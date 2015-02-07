@@ -2,6 +2,7 @@ library(shiny)
 library(leaflet)
 library(ggmap)
 library(rgdal)
+library(foreign)
 
 # setwd("R/fixMyPath") # go into the directory if running in rstudio
 
@@ -22,8 +23,8 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data)
 
   #     addPopups(-1.549, 53.8, 'First ever popup in leaflet') # add popup
 
-  output$myMap = renderLeaflet(leaflet(data = l) %>%
-      addTiles() %>%
+  output$myMap = renderLeaflet(leaflet( data = l) %>%
+      addTiles("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
       setView(lng = map_centre[1], lat = map_centre[2], zoom = 10) %>%
       addPolygons(data = leeds
         , opacity = input$transp_zones
