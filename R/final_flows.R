@@ -55,7 +55,9 @@ saveRDS(l, "R/fixMyPath/lines.Rds")
 
 # Top ecp (extra cycling potential)
 t10 <- head(order(flows$ecp, decreasing = TRUE), 10)
+write.csv(t10, "al-flow.csv")
 top_ecp <- flows[t10,]
+
 summary(top_ecp$ecp)
 summary(flows$ecp)
 
