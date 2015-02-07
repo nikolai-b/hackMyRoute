@@ -45,13 +45,15 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
         , fillColor = leeds$color_pcycle
       ) %>%
       addPolylines(data = lfast, color = "red"
-                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$fastest_distance_in_m, flows$p_cycle)
+                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$fastest_distance_in_m, round(flows$p_cycle*100,2))
                    ) %>%
       addPolylines(data = lquiet, color = "green",
-                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$quietest_distance_in_m, flows$p_cycle)
+                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$quietest_distance_in_m, round(flows$p_cycle*100,2))
                    ) %>%
-      addCircles(data = cents
-                 , color = "black") %>%
+      addCircleMarkers(data = cents
+                 , radius = 2
+                 , color = "black"
+                 , popup = sprintf("<b>Journeys by bike (%%):</b>%s", round(ldata$pCycle*100,2))) %>%
       addGeoJSON(geojson)
   )
   })
