@@ -17,7 +17,7 @@ l$color[grepl("fast", rownames(l@data))] <- "red"
 lfast <- l[ l$color == "green", ]
 lquiet <- l[ l$color == "red", ]
 
-flows <- read.csv("flows.csv")
+flows <- read.csv("al-flow.csv")
 leeds <- readRDS("leeds-msoas-simple.Rds") %>%
   spTransform(CRS("+init=epsg:4326"))
 
@@ -34,9 +34,9 @@ shinyServer(function(input, output){
 cents <- coordinates(leeds)
 cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
 
-  observe({
-    geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
-    output$myMap = renderLeaflet(leaflet() %>%
+ observe({geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
+
+  output$myMap = renderLeaflet(leaflet() %>%
       addTiles() %>%
       addPolygons(data = leeds
         , fillOpacity = 0.4
@@ -55,7 +55,6 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
                  , color = "black"
                  , popup = sprintf("<b>Journeys by bike: </b>%s%%", round(ldata$pCycle*100,2))) %>%
       addGeoJSON(geojson)
-  )
-  })
+  )})
 })
 
