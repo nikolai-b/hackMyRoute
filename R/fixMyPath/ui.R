@@ -10,6 +10,7 @@ fluidPage(
       ,sliderInput("transp_fast", label = "Transparency of paths", min = 0, max = 1, value = 0.7)
       ,selectInput("viewout", "Output to view", choices = c("Highest cycle counts", "Lowest number who cycle", "Highest potential", "Greatest extra cycling potential"))
       # , selectInput("colour", "Colour of paths", choices = c("red", "blue", "black"))
+      , selectInput("feature", "Features", choices = c("cycleparking", "collisions", "bikeshops"))
 
     ),
     mainPanel(leafletOutput('myMap'))
