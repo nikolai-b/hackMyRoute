@@ -1,0 +1,60 @@
+---
+title: '''FixMyPath'': a cycle Policy and public engagement tools'
+author: "Robin Lovelace, Nikolai Berkoff, Martin Lucas-Smith"
+date: "February 7, 2015"
+output: pdf_document
+---
+
+# Introduction
+
+The concept of FixMyPath was developed during the HackMyRoute hackathon organised
+by the Leeds node of the Open Data Initiative (ODI). The objective was simple:
+to create a proof-of-concept of an online tool application
+that will provide an evidence base for policy makers,
+bicycle campaigners and the public to help better understand the rate of cycling
+in their local authority, and implement more cost-effective pro-cycling interventions.
+
+# Data
+
+The data used for this project is publicly available. We selected datasets based
+on their ability to help explain the high or low rate of cycling in different
+areas and to guide future pro-cycling policies, especially the construction of
+new bicycle paths. Specifically, we used the following datasets:
+
+- Data on travel to work flows between medium super output areas
+(MSOAs) --- 'origin-destination flow data'. This data has recently (summer 2014)
+been made available to the public through the Open Government Licence (OGL):  .
+There are 107 MSOA zones that comprise the Local Authority of Leeds.
+The input dataset could easily be expanded to incorporate all 300 MSOA zones
+of the West Yorkshire Combined Authority (WYCA), including
+Leeds, Calderdale, Bradford, Kirklees and Wakefield.
+For Leeds, on which our prototype was based, the flow data contains 10,536
+origin-destination pairs. An example of this data is present in Table 1.
+
+```{r, echo=FALSE}
+# library(knitr)
+# kable(fl_present[1:5, ])
+
+```
+
+|Origin    |Destination | Total| Bicycle| lon_origin| lat_origin|  lon_dest|
+|:---------|:-----------|-----:|-------:|----------:|----------:|---------:|
+|E02002330 |E02002330   |    66|       1|  -1.400577|   53.92915| -1.400577|
+|E02002330 |E02002331   |   742|      38|  -1.400577|   53.92915| -1.347653|
+|E02002330 |E02002332   |     2|       0|  -1.400577|   53.92915| -1.705267|
+|E02002330 |E02002333   |     9|       2|  -1.400577|   53.92915| -1.687695|
+|E02002330 |E02002334   |    50|       1|  -1.400577|   53.92915| -1.357652|
+
+
+```{r, echo=FALSE}
+# Todo: add link to the wicid website here
+```
+
+- 
+
+
+# Technology
+
+# Example uses
+
+# Future development proposal

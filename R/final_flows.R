@@ -7,17 +7,25 @@
 # # # # # # # # # # # # # # # # #
 
 f <- read.csv("data/msoa-leeds-all-with-route.csv")
+nrow(f)
 # which cols do we want from f?
 names(f) # id and last 4 are new
 
 fl <- read.csv("data/msoa-flow-leeds-all.csv")
-names(fl)
-fl$lon_dest[1:5] == f$lon_dest[1:5]
-summary(fl$lon_dest == f$lon_dest)
-summary(fl$lat_origin == f$lat_origin)
-summary(fl$lat_origin == f$lat_origin)
-
 fl$lat_dest <- f$lat_dest
+head(fl)
+names(fl)
+
+# flows to present
+library("dplyr")
+fl_present <- select(fl, Area.of.residence, Area.of.workplace, All.categories..Method.of.travel.to.work, Bicycle, lon_origin,  lat_origin, lon_dest, lon_dest)   # fl dataset to present
+fl_present <- rename(fl_present, Origin = Area.of.residence, Destination = Area.of.workplace, Total = All.categories..Method.of.travel.to.work)
+
+# Test the datasets join-up
+# fl$lon_dest[1:5] == f$lon_dest[1:5]
+# summary(fl$lon_dest == f$lon_dest)
+# summary(fl$lat_origin == f$lat_origin)
+# summary(fl$lat_origin == f$lat_origin)
 
 f <- f[c(1, 6:9)]
 names(f)
