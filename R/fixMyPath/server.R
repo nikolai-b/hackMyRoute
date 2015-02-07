@@ -2,6 +2,7 @@ library(shiny)
 library(leaflet)
 library(ggmap)
 library(rgdal)
+library(RColorBrewer)
 library(dplyr)
 
 # setwd("R/fixMyPath") # go into the directory if running in rstudio
@@ -33,11 +34,9 @@ shinyServer(function(input, output){
 cents <- coordinates(leeds)
 cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
 
-  #     addPopups(-1.549, 53.8, 'First ever popup in leaflet') # add popup
-
-  observe({geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
-leeds
-  output$myMap = renderLeaflet(leaflet() %>%
+  observe({
+    geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
+    output$myMap = renderLeaflet(leaflet() %>%
       addTiles() %>%
       setView(lng = map_centre[1], lat = map_centre[2], zoom = 10) %>%
       addPolygons(data = leeds
@@ -45,10 +44,16 @@ leeds
         , opacity = input$transp_zones
         , fillColor = leeds$color_pcycle
       ) %>%
-      addPolylines(data = lfast, color = "red", opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$fastest_distance_in_m, flows$p_cycle)) %>%
-      addPolylines(data = lquiet, color = "green", opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$quietest_distance_in_m, flows$p_cycle)) %>%
-      addCircles(data = cents, color = "black") %>%
+      addPolylines(data = lfast, color = "red"
+                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$fastest_distance_in_m, flows$p_cycle)
+                   ) %>%
+      addPolylines(data = lquiet, color = "green",
+                   , opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$quietest_distance_in_m, flows$p_cycle)
+                   ) %>%
+      addCircles(data = cents
+                 , color = "black") %>%
       addGeoJSON(geojson)
   )
   })
 })
+
