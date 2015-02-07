@@ -13,9 +13,12 @@ l <- readRDS("al.Rds")
 l$color <- "green"
 l$color[grepl("fast", rownames(l@data))] <- "red"
 
+lfast <- l[ l$color == "green", ]
+lquiet <- l[ l$color == "red", ]
+
+flows <- read.csv("flows.csv")
 leeds <- readRDS("leeds-msoas-simple.Rds") %>%
   spTransform(CRS("+init=epsg:4326"))
-  feature = "cycleparking"
 
 shinyServer(function(input, output){
 
@@ -25,14 +28,15 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data)
   #     addPopups(-1.549, 53.8, 'First ever popup in leaflet') # add popup
 
   observe({geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
-
-  output$myMap = renderLeaflet(leaflet(data = l) %>%
+leeds
+  output$myMap = renderLeaflet(leaflet() %>%
       addTiles() %>%
       setView(lng = map_centre[1], lat = map_centre[2], zoom = 10) %>%
       addPolygons(data = leeds
         , opacity = input$transp_zones
       ) %>%
-      addPolylines(color = l$color, opacity = input$transp_fast) %>%
+      addPolylines(data = lfast, color = "red", opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$fastest_distance_in_m, flows$p_cycle)) %>%
+      addPolylines(data = lquiet, color = "green", opacity = input$transp_fast, popup = sprintf("<dl><dt>d (m) </dt><dd>%s</dd><dt>%% of journeys by bike</dt><dd>%s</dd>", flows$quietest_distance_in_m, flows$p_cycle)) %>%
       addCircles(data = cents, color = "black") %>%
       addGeoJSON(geojson)
   )
