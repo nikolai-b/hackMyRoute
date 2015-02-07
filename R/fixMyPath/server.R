@@ -9,6 +9,7 @@ library(dplyr)
 
 # Load data
 map_centre <- geocode("Leeds")
+pedallers <- geocode("Mabgate Green")
 l <- readRDS("al.Rds")
 
 l$color <- "green"
@@ -37,7 +38,7 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
  observe({geojson <- RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))
 
   output$myMap = renderLeaflet(leaflet() %>%
-      addTiles() %>%
+      addTiles(urlTemplate = "http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png") %>%
       addPolygons(data = leeds
         , fillOpacity = 0.4
         , opacity = input$transp_zones
@@ -54,7 +55,8 @@ cents <- SpatialPointsDataFrame(cents, data = leeds@data, match.ID = F)
                  , radius = 2
                  , color = "black"
                  , popup = sprintf("<b>Journeys by bike: </b>%s%%", round(ldata$pCycle*100,2))) %>%
-      addGeoJSON(geojson)
+      addGeoJSON(geojson) %>%
+      addPopups(pedallers$lon, pedallers$lat, "The best bike shop in Leeds!")
   )})
 })
 
