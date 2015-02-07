@@ -7,7 +7,8 @@ fluidPage(
             ,checkboxGroupInput("display", label = "Display",
               choices = c("zones", "centroids", "some-lines", "all-lines"),
               selected = "zones"),
-            selectInput("viewout", "Output to view", choices = c("Highest cycle counts", "Lowest number who cycle", "Highest potential", "Greatest extra cycling potential"))
+            selectInput("viewout", "Output to view", choices = c("Highest cycle counts", "Lowest number who cycle", "Highest potential", "Greatest extra cycling potential")),
+            selectInput("colour", "Colour", choices = c("red", "blue", "black"))
 
     ),
     mainPanel(leafletOutput('myMap'))
