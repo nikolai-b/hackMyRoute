@@ -5,3 +5,4 @@ R/fixMyPath/rsconnect/
 *.dcf
 local-data/
 *.pdf
+*.tex

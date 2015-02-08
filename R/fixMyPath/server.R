@@ -5,7 +5,7 @@ library(rgdal)
 library(RColorBrewer)
 library(dplyr)
 
-# setwd("R/fixMyPath") # go into the directory if running in rstudio
+# old <- setwd("R/fixMyPath") # go into the directory if running in rstudio
 
 # Load data
 map_centre <- geocode("Leeds")

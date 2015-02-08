@@ -1,25 +1,86 @@
 ---
-title: '''FixMyPath'': a cycle Policy and public engagement tools'
-author: "Robin Lovelace, Nikolai Berkoff, Martin Lucas-Smith"
+title: 'Proposal: an online tool for cycle policy planning and public engagement'
+author: "Robin Lovelace (University of Leeds), Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets.net)"
 date: "February 7, 2015"
-output: pdf_document
+output:
+  pdf_document:
+    keep_tex: yes
+  word_document: default
 ---
+
+```{r, echo=FALSE, results='hide'}
+pkgs <- c("png", "grid")
+lapply(pkgs, library, character.only = TRUE)
+```
+
 
 # Introduction
 
-The concept of FixMyPath was developed during the HackMyRoute hackathon organised
-by the Leeds node of the Open Data Initiative (ODI). The objective was simple:
-to create a proof-of-concept of an online tool application
+The concept of this planning tool was developed during the HackMyRoute hackathon organised
+by the Leeds node of the Open Data Initiative (ODI). Our objective was simple:
+to create the proof-of-concept of an online application
 that will provide an evidence base for policy makers,
 bicycle campaigners and the public to help better understand the rate of cycling
-in their local authority, and implement more cost-effective pro-cycling interventions.
+in their local area.  The tool will also help decision makers
+implement more cost-effective pro-cycling interventions harnessing the
+power of online, interactive map visualisation technology.
 
-# Data
+
+```{r, echo=FALSE}
+# Todo: add link to the wicid website here
+```
+
+# Problem
+
+There is a clear need for a solid evidence base for prioritising new cycling
+investment. (Policy stuff e.g. CDP.) At a time of fiscal restraint and increased
+increased investment in active travel, 
+
+The 'open data' revolution has greatly increased access to data.
+This can benefit transport planners, if they have access to appropriate and
+user-friendly tools, built on a strong evidence base and accessible to public
+scrutiny.
+Propensity to cycle, for example, is a critical metric in deciding where
+to target new interventions and can be calculated by harnessing the
+flow data and census databases mentione previously. 
+
+In addition, new datasets continue to emerging that could aid transport planner
+and there is a cost associated with adding this to current tools.
+
+Extracting useful *information* and *knowledge* from diverse datasets 
+requires specialist skills to analyse. This is a major barrier to entry for 
+transport planners, policy makers and stakeholders from civil society.
+
+# Aims
+
+This project will design, build, implement an online map-based tool.  We will 
+combine various datasets and will create a simple process for adding custom 
+data to the map.  The map display will have a simple user interface
+allowing the user to select datasets of interest using heatmaps and markers.
+We propose an agile development methodology where the datasets of interest and layout
+would be subject to a process of continual feedback and refinement.
+
+# Example uses
+
+https://robinlovelace.shinyapps.io/fixMyPath/
+
+```{r, echo=FALSE}
+img <- readPNG("../../mobile-layer-example.png")
+grid.raster(img)
+```
+
+
+# Future development proposal
+
+\clearpage
+
+# Appendix: data sources 
 
 The data used for this project is publicly available. We selected datasets based
 on their ability to help explain the high or low rate of cycling in different
-areas and to guide future pro-cycling policies, especially the construction of
-new bicycle paths. Specifically, we used the following datasets:
+areas, and to guide future active travel policies, such as the construction of
+new bicycle paths and dedicated bicycle parking facilities.
+Specifically, we used the following datasets:
 
 - Data on travel to work flows between medium super output areas
 (MSOAs) --- 'origin-destination flow data'. This data has recently (summer 2014)
@@ -44,17 +105,3 @@ origin-destination pairs. An example of this data is present in Table 1.
 |E02002330 |E02002332   |     2|       0|  -1.400577|   53.92915| -1.705267|
 |E02002330 |E02002333   |     9|       2|  -1.400577|   53.92915| -1.687695|
 |E02002330 |E02002334   |    50|       1|  -1.400577|   53.92915| -1.357652|
-
-
-```{r, echo=FALSE}
-# Todo: add link to the wicid website here
-```
-
-- 
-
-
-# Technology
-
-# Example uses
-
-# Future development proposal
