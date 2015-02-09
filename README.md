@@ -1,5 +1,17 @@
 # hackMyRoute
-To run ruby and bundler are prerequisitss
+
+Our entry into the #HackMyRoute 'hackathon' organised by Leeds ODI.
+
+Write-up of event: http://www.leedsdatamill.org/hacks-events/hack-my-route-live-blog/
+
+Working version of the app: https://robinlovelace.shinyapps.io/fixMyPath/
+This should be reproducible (see in the R folder, try and let us know).
+
+More on context: http://www.r-bloggers.com/the-leaflet-package-for-online-mapping-in-r/
+
+## Ruby stuff
+
+To run ruby and bundler are prerequisits
 Prerequisites: ruby and bundler.  Then `bundle install`
 
 To query run in irb shell
