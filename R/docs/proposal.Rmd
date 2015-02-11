@@ -32,24 +32,25 @@ power of online, interactive map visualisation technology.
 
 # Aims
 
-When deciding between a number of competing cycle paths we aim to build
-a tool to visualise different metrics of the areas involved.
-One path may run through an area with a current low cycling rate that
-is surrounded by areas of a high cycle rate, one may have a medium cycle rate
-but have large propensity to cycle rate with the connecting location.  Having all
-of these datasets available in a simple online tool could help decide which
-paths could have the most impact.  This would allow tapping into a currently existing
+We will build you a tool which will help you decide the best locations to develop new cycle
+infrastructure.  We will do this by allowing you to visualise different metrics related to
+cycling or active travel on the map. For example, one path may run through an area with a
+current low cycling rate that is surrounded by areas of a high cycle rate, one may have a
+medium cycle rate but have large propensity to cycle rate with the connecting location.
+Having all of these datasets available in a simple online tool could help decide which
+paths could deliver the most impact.  This would allow tapping into a currently existing
 open data to create an evidence base to support better decision making.
 
 This would not simply be using currently available data as there may be many other
-metrics that a planner would like to have access to.  The tool would also have the
-ability to create their own custom metric based on the available data.
-We propose to create this map for Leeds.
+metrics that you might like to have access to.  The tool would also have the
+ability to create their own custom metric based on the available data. For example,
+data on the current fastest and safest path along with the difference the new infrastructure
+would make.  We propose to create this map for Leeds.
 
-This project will design, build, implement an online map-based tool.  We will
-combine various datasets and will create a simple process for adding custom
-data to the map.  The map display will have a simple user interface
-allowing the user to select datasets of interest using heatmaps and markers.
+This project will design, build, implement this online map-based tool.
+The map display will have a simple user interface
+allowing the user to select datasets of interest using heatmaps and markers which
+will allow planers have see an overview of many different factors quickly and simple.
 We propose an agile development methodology where the datasets of interest and layout
 would be subject to a process of continual feedback and refinement so that
 the end result would not be a static piece of software but a collaborative process
