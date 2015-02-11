@@ -1,6 +1,6 @@
 ---
 title: 'Proposal: an online tool for cycle policy planning and public engagement'
-author: "Dr. Robin Lovelace (University of Leeds), Dr. Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets.net)"
+author: "Dr. Robin Lovelace (University of Leeds), Dr. Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets Ltd)"
 date: "February 7, 2015"
 output:
   pdf_document:
@@ -16,14 +16,21 @@ lapply(pkgs, library, character.only = TRUE)
 
 # Introduction
 
-The concept of this planning tool was developed during the HackMyRoute hackathon organised
-by the Leeds node of the Open Data Initiative (ODI). Our objective was simple:
-to create the proof-of-concept of an online application
-that will provide an evidence base for policy makers,
-bicycle campaigners and the public to help better understand the rate of cycling
-in their local area.  The tool will also help decision makers
-implement more cost-effective pro-cycling interventions harnessing the
-power of online, interactive map visualisation technology.
+The proposal is for the building of a tool which will help 
+decision-makers, stakeholders and others decide the best locations to 
+develop new cycle infrastructure.
+
+The concept of this planning tool was developed during the HackMyRoute 
+hackathon organised by the Leeds node of the Open Data Initiative (ODI), 
+who were enthused by the possibilities it could open up.
+
+Our objective was simple: to create the proof-of-concept of an online 
+and mobile application that will provide an evidence base for policy 
+makers, bicycle campaigners and the public to help better understand the 
+rate of cycling in their local area.  The tool will also help 
+decision-makers implement more cost-effective pro-cycling interventions 
+harnessing the power of online, interactive map visualisation 
+technology.
 
 
 ```{r, echo=FALSE}
@@ -32,49 +39,80 @@ power of online, interactive map visualisation technology.
 
 # Aims
 
-We will build you a tool which will help you decide the best locations to develop new cycle
-infrastructure.  We will do this by allowing you to visualise different metrics related to
-cycling or active travel on the map. For example, one path may run through an area with a
-current low cycling rate that is surrounded by areas of a high cycle rate, one may have a
-medium cycle rate but have large propensity to cycle rate with the connecting location.
-Having all of these datasets available in a simple online tool could help decide which
-paths could deliver the most impact.  This would allow tapping into a currently existing
-open data to create an evidence base to support better decision making.
+The tool will allow users to visualise different metrics related to 
+cycling or active travel on the map, in order to help build a strong 
+case for infrastructure improvement.
 
-This would not simply be using currently available data as there may be many other
-metrics that you might like to have access to.  The tool would also have the
-ability to create their own custom metric based on the available data. For example,
-data on the current fastest and safest path along with the difference the new infrastructure
-would make.  We propose to create this map for Leeds.
+For example, one proposed path may run through an area with a current 
+low cycling rate that is surrounded by areas of a high cycle rate; by 
+constrast, another proposed path may be in an area with an already 
+medium cycle rate but have larger propensity to cycle rate with the 
+connecting location. Having data that is relevant to these 
+infrastructure proposals but available in a simple online tool could 
+help decide which paths could deliver the most impact.  This would allow 
+tapping into existing open data to create an evidence base to support 
+better decision-making.
 
-This project will design, build, implement this online map-based tool.
-The map display will have a simple user interface
-allowing the user to select datasets of interest using heatmaps and markers which
-will allow planers have see an overview of many different factors quickly and simple.
-We propose an agile development methodology where the datasets of interest and layout
-would be subject to a process of continual feedback and refinement so that
-the end result would not be a static piece of software but a collaborative process
-between the developers and the planners.
+This would not simply be using currently available data as there may be 
+many other metrics to which users might like to have access.  The tool 
+would also have the ability to create their own custom metric based on 
+the available data. For example, one metric could combine data on the 
+current fastest and safest route along with the difference the new 
+infrastructure would make.  We propose to create this map for Leeds.
+
+This project will design, build, implement this online map-based tool. 
+The map display will have a simple user interface allowing the user to 
+select datasets of interest using heatmaps and markers which will allow 
+planers have see an overview of many different factors quickly and 
+simple. We propose an agile development methodology where the datasets 
+of interest and layout would be subject to a process of continual 
+feedback and refinement so that the end result would not be a static 
+piece of software but a collaborative process between the developers and 
+the planners.
+
+The project will build on and intermesh with existing research activity 
+being undertaken at the University of Leeds, and with data layer-based 
+work by CycleStreets Ltd (who run the UK cycle journey planner at 
+cyclestreets.net).
 
 
 # Why is this different to current software?
 
-The 'open data' revolution has greatly increased access to data.
-This can benefit transport planners, if they have access to appropriate and
-user-friendly tools, built on a strong evidence base and accessible to public
-scrutiny.
-Propensity to cycle, for example, is a critical metric in deciding where
-to target new interventions and can be calculated by harnessing the
-flow data and census databases mentioned previously.
-Extracting useful *information* and *knowledge* from diverse datasets
-requires specialist skills to analyse. This is a major barrier to entry for
-transport planners, policy makers and stakeholders from civil society.
-In addition, new datasets continue to emerging that could aid transport planner
-and there is a cost associated with adding this to current tools.
+The 'open data' revolution has greatly increased access to data. This 
+can benefit transport planners, if they have access to appropriate and 
+user-friendly tools, built on a strong evidence base and accessible to 
+public scrutiny.
 
-# Example uses
+Propensity to cycle, for example, is a critical metric in deciding where 
+to target new interventions and can be calculated by harnessing the flow 
+data and census databases mentioned previously.
+
+Extracting useful *information* and *knowledge* from diverse datasets 
+requires specialist skills to analyse. This is a major barrier to entry 
+for transport planners, policy makers and stakeholders from civil 
+society. In addition, new datasets continue to emerging that could aid 
+transport planner and there is a cost associated with adding this to 
+current tools.
+
+
+# Prototyping work
+
+A very basic proof-of-concept prototype was developed during the 
+HackMyRoute hackathon refered to above. It gives an indication of the 
+levels of cycling of different parts of Leeds (as determined from the 
+census) and correlates this with collision data, route accessibility, 
+and cycle parking presence. The prototype can be seen at:
 
 https://robinlovelace.shinyapps.io/fixMyPath/
+
+The partners for the proposal include CycleStreets Ltd, a not-for-profit 
+social enterprise who run a cycle journey planner and a range of tools 
+for advocacy groups and local authorities. Amongst these is a 
+comprehensive collision data viewer, for instance. Funding will enable 
+collaboration between the partners in the project so that the combined 
+strengths of the (a) research-based activity which will underpin the 
+tool, and (b) the end-user reach and user knowledge available to 
+CycleStreets will mean a user-friendly and widely-accessible tool.
 
 ```{r, echo=FALSE}
 img <- readPNG("../../mobile-layer-example.png")
@@ -86,13 +124,14 @@ grid.raster(img)
 
 \clearpage
 
+
 # Appendix: data sources
 
-The data used for this project is publicly available. We selected datasets based
-on their ability to help explain the high or low rate of cycling in different
-areas, and to guide future active travel policies, such as the construction of
-new bicycle paths and dedicated bicycle parking facilities.
-Specifically, we used the following datasets:
+The data used for this project is publicly available. We selected 
+datasets based on their ability to help explain the high or low rate of 
+cycling in different areas, and to guide future active travel policies, 
+such as the construction of new bicycle paths and dedicated bicycle 
+parking facilities. Specifically, we used the following datasets:
 
 - Data on travel to work flows between medium super output areas
 (MSOAs) --- 'origin-destination flow data'. This data has recently (summer 2014)
