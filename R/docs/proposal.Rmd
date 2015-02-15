@@ -1,7 +1,7 @@
 ---
 title: 'Proposal: an online tool for cycle policy planning and public engagement'
 author: "Dr. Robin Lovelace (University of Leeds), Dr. Nikolai Berkoff (independent web developer), Martin Lucas-Smith (CycleStreets Ltd)"
-date: "February 7, 2015"
+date: "16 February, 2015"
 output:
   pdf_document:
     keep_tex: yes
@@ -16,49 +16,88 @@ lapply(pkgs, library, character.only = TRUE)
 
 # Introduction
 
-The proposal is for the building of a tool which will help 
-decision-makers, stakeholders and others decide the best locations to 
-develop new cycle infrastructure.
+The proposal is to create a tool which will empower 
+decision-makers, stakeholders and others to understand cycling at the local level
+and to focus on the areas and routes most in need of improved cycle infrastructure.
 
 The concept of this planning tool was developed during the HackMyRoute 
-hackathon organised by the Leeds node of the Open Data Initiative (ODI), 
-who were enthused by the possibilities it could open up.
+hackathon organised by the Leeds node of the Open Data Initiative (ODI).
+Representatives from the ODI, West Yorkshire Combined Authority (WYCA)
+and members of the public were enthused by the possibilities it could open up.
+The proposed work will extend the functionality and useability of the tool,
+for the benefit of all cyclists in West Yorkshire.
 
-Our objective was simple: to create the proof-of-concept of an online 
-and mobile application that will provide an evidence base for policy 
-makers, bicycle campaigners and the public to help better understand the 
-rate of cycling in their local area.  The tool will also help 
-decision-makers implement more cost-effective pro-cycling interventions 
-harnessing the power of online, interactive map visualisation 
-technology.
-
+Our aim simple: to create an online 
+and mobile application that will provide an evidence-base for understanding
+variability in the rate of cycling at the local level across West Yorkshire.
+The tool will provide up-to-date information on a range of factors affecting cycling
+and sustainable transport policy to policy makers, bicycle campaigners and 
+interested members of the public in an accessible, attractive and interactive form.
 
 ```{r, echo=FALSE}
 # Todo: add link to the wicid website here
+# Removed:
+#   The tool could also help decision-makers implement more cost-effective pro-cycling
+# interventions 
+# harnessing the power of online, interactive map visualisation 
+# technology.
 ```
 
-# Aims
+# Objectives
 
-The tool will allow users to visualise different metrics related to 
-cycling or active travel on the map, in order to help build a strong 
-case for infrastructure improvement.
+- To create an interactive map that covers the entirety of West Yorkshire,
+with information on the current rate of bicycle commuting in different areas.
+- To enable users to visualise the rate of cycle commuting, not only in specific areas,
+but also along 'flow lines'.
+- To create metrics of the potential level of cycling in different areas, based
+on the number of cyclable trips between areas on the map.
+- To alocate flow lines of particular interest to the user (e.g. where the current
+highest rate of cycling is or where the potential increase in cycling is highest)
+onto the transport network using the CycleStreets.net API.
+- To allow users to visualise addition information relevant to cycle policy
+in the local area including bicycle parking, road traffic casualties and
+bicycle shops. This will help priorities what type of cycling provision is
+most needed in different areas.
 
-For example, one proposed path may run through an area with a current 
-low cycling rate that is surrounded by areas of a high cycle rate; by 
-constrast, another proposed path may be in an area with an already 
-medium cycle rate but have larger propensity to cycle rate with the 
-connecting location. Having data that is relevant to these 
-infrastructure proposals but available in a simple online tool could 
-help decide which paths could deliver the most impact.  This would allow 
-tapping into existing open data to create an evidence base to support 
+# Example usage
+
+The tool could be used by policy makers to identify new paths that serve areas with currently 
+low cycling rates but which have a high potential for increased cycling.
+Many people currently have access to the underlying data, but not presented in
+a form that is easy to understand.  Thus policy makers could use the tool to 
+tap into existing open data to create an evidence base to support 
 better decision-making.
 
-This would not simply be using currently available data as there may be 
-many other metrics to which users might like to have access.  The tool 
-would also have the ability to create their own custom metric based on 
-the available data. For example, one metric could combine data on the 
-current fastest and safest route along with the difference the new 
-infrastructure would make.  We propose to create this map for Leeds.
+```{r}
+# another proposed path may be in an area with an already 
+# medium cycle rate but have larger propensity to cycle rate with the 
+# connecting location.
+## By decision makers
+## By cycle campaigners
+
+```
+
+Another beneficiary will be
+cycle campaigns. Local campaign groups
+can easily become focussed on single issues, to the detriment of
+understanding the 'big picture' and rates of cycling and provision in
+areas outside their members' local areas. The tool could help campaigners
+prioritise where to focus their next campaign, empowered with the evidence.
+
+The public and everyday cyclist will benefit by being provided with
+a simple, cohesive system that makes available a wide range of evidence on
+cycling in a single place. This will inform the ongoing cycling debate in
+West Yorkshire, directing it to discussion of the data rather than anecdote.
+
+```{r}
+# This would not simply be using currently available data as there may be 
+# many other metrics to which users might like to have access.  The tool 
+# would also have the ability to create their own custom metric based on 
+# the available data. For example, one metric could combine data on the 
+# current fastest and safest route along with the difference the new 
+# infrastructure would make.  We propose to create this map for Leeds.
+```
+
 
 This project will design, build, implement this online map-based tool. 
 The map display will have a simple user interface allowing the user to 
