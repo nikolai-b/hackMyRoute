@@ -68,7 +68,7 @@ a form that is easy to understand.  Thus policy makers could use the tool to
 tap into existing open data to create an evidence base to support 
 better decision-making.
 
-```{r}
+```{r, echo=FALSE}
 # another proposed path may be in an area with an already 
 # medium cycle rate but have larger propensity to cycle rate with the 
 # connecting location.
@@ -89,7 +89,7 @@ a simple, cohesive system that makes available a wide range of evidence on
 cycling in a single place. This will inform the ongoing cycling debate in
 West Yorkshire, directing it to discussion of the data rather than anecdote.
 
-```{r}
+```{r, echo=FALSE}
 # This would not simply be using currently available data as there may be 
 # many other metrics to which users might like to have access.  The tool 
 # would also have the ability to create their own custom metric based on 
@@ -98,22 +98,32 @@ West Yorkshire, directing it to discussion of the data rather than anecdote.
 # infrastructure would make.  We propose to create this map for Leeds.
 ```
 
+# Proposed work
 
-This project will design, build, implement this online map-based tool. 
-The map display will have a simple user interface allowing the user to 
-select datasets of interest using heatmaps and markers which will allow 
-planers have see an overview of many different factors quickly and 
-simple. We propose an agile development methodology where the datasets 
-of interest and layout would be subject to a process of continual 
-feedback and refinement so that the end result would not be a static 
-piece of software but a collaborative process between the developers and 
-the planners.
+We will design, build and deploy this online map-based tool. 
+The map display will have a simple interface allowing the user to 
+select datasets of interest using drop-down menus on both cycling
+behavior and the transport infrastructure. Choropleth maps,
+flow lines and markers will 
+provide an overview of many different factors quickly and 
+simply. When the user has found routes that are of interest,
+he or she will be able to plot the current safest route for cyclists
+and to see where it could be made more direct.
 
-The project will build on and intermesh with existing research activity 
+We will use 'agile development' to  
+prioritise the workflow. Based on real-time user feedback and testing,
+the tool will undergo continual  and rapid refinement.
+The open-source nature of the tool will ensure that the 
+end result will not be a static 
+piece of software but a collaborative process between the developers, 
+planners and other users.
+
+The project will build-on and complement existing research activity 
 being undertaken at the University of Leeds, and with data layer-based 
 work by CycleStreets Ltd (who run the UK cycle journey planner at 
-cyclestreets.net).
-
+cyclestreets.net). If it commissions this work, West Yorkshire could
+be an early adopter of a powerful tool that will eventually be deployed
+nationwide.
 
 # Why is this different to current software?
 
@@ -129,69 +139,105 @@ data and census databases mentioned previously.
 Extracting useful *information* and *knowledge* from diverse datasets 
 requires specialist skills to analyse. This is a major barrier to entry 
 for transport planners, policy makers and stakeholders from civil 
-society. In addition, new datasets continue to emerging that could aid 
-transport planner and there is a cost associated with adding this to 
-current tools.
-
+society. In addition, new datasets continue to emerge that could aid 
+transport planner; this tool will be flexible enought to rapidly incorporate
+these new sources of data.
 
 # Prototyping work
 
-A very basic proof-of-concept prototype was developed during the 
-HackMyRoute hackathon refered to above. It gives an indication of the 
-levels of cycling of different parts of Leeds (as determined from the 
-census) and correlates this with collision data, route accessibility, 
-and cycle parking presence. The prototype can be seen at:
-
-https://robinlovelace.shinyapps.io/fixMyPath/
-
-The partners for the proposal include CycleStreets Ltd, a not-for-profit 
-social enterprise who run a cycle journey planner and a range of tools 
-for advocacy groups and local authorities. Amongst these is a 
-comprehensive collision data viewer, for instance. Funding will enable 
-collaboration between the partners in the project so that the combined 
-strengths of the (a) research-based activity which will underpin the 
-tool, and (b) the end-user reach and user knowledge available to 
-CycleStreets will mean a user-friendly and widely-accessible tool.
+A proof-of-concept was developed during the 
+HackMyRoute hackathon refered to above. 'FixMyPath' illustrates the current
+level of cycling across Leeds, based on Census commuting flow data.
+Collision data, route accessibility, 
+and cycle parking are also available to users. The prototype can be seen at tested at
+https://robinlovelace.shinyapps.io/fixMyPath/. An example of what the tool will
+look-like, when deployed in a smartphone app, is illustrated below. The fact
+we have created a working prototype in one day of intensive work demonstrates
+that we have the ability to deliver a finished product in a short period of time.
 
 ```{r, echo=FALSE}
+# I think people know what cyclestreets.net is! (RL)
+# The partners for the proposal include CycleStreets Ltd, a not-for-profit 
+# social enterprise who run a cycle journey planner and a range of tools 
+# for advocacy groups and local authorities. Amongst these is a 
+# comprehensive collision data viewer, for instance. Funding will enable 
+# collaboration between the partners in the project so that the combined 
+# strengths of the (a) research-based activity which will underpin the 
+# tool, and (b) the end-user reach and user knowledge available to 
+# CycleStreets will mean a user-friendly and widely-accessible tool.
+```
+
+
+```{r, echo=FALSE, fig.height=4}
 img <- readPNG("../../mobile-layer-example.png")
 grid.raster(img)
 ```
 
 
-# Future development proposal
+# Finances
 
-\clearpage
+The proposed work will cost in the region of £5,000 to £40,000 depending on the
+features and specification of the tool:
 
+- The £5,000 option will extend the existing tool accross all of West Yorkshire and 
+allow the user to select the origin-destination flows of interest based on multiple criteria.
+- £10,000 will pay for the previous step and deployment of the tool in a
+simple smartphone app to encourage user engagement, testing and feedback.
+- £20,000 will pay for the previous steps and additional work to allow for the
+the display of propensity to cycle between all MSOA zones
+(containing on average 7,000 people) in West Yorkshire on desktop computers.
+The additional money
+will be spent on modelling work to estimate propensity to cycle under a range of
+scenarios and the visualisation of tens of thousands of flow lines on an interactive map.
+- £40,000 will pay for the full flow-based model to be deployed in a user-friendly
+and functional smartphone app. A key feature of this app will be to allow user
+input, based on interpretation of the aforementioned data, on the routes that
+should be prioritised for future upgrades to cycle paths. This will allow for
+'crowd-sourcing' of data to help transport planners decide where to focus limited
+resources across West Yorkshire. Money will be set-aside for outreach and 
+engagement events to ensure high uptake of the app.
 
-# Appendix: data sources
+# Contacting us
 
-The data used for this project is publicly available. We selected 
-datasets based on their ability to help explain the high or low rate of 
-cycling in different areas, and to guide future active travel policies, 
-such as the construction of new bicycle paths and dedicated bicycle 
-parking facilities. Specifically, we used the following datasets:
+We are willing to discuss the details of this plan and are willing to
+negotiate a plan that is of greatest benefit for the funders.
+Please contact us at **info@cyclestreets.net** to let us know the
+outcome of this proposal or for further information/discussion.
 
-- Data on travel to work flows between medium super output areas
-(MSOAs) --- 'origin-destination flow data'. This data has recently (summer 2014)
-been made available to the public through the Open Government Licence (OGL):  .
-There are 107 MSOA zones that comprise the Local Authority of Leeds.
-The input dataset could easily be expanded to incorporate all 300 MSOA zones
-of the West Yorkshire Combined Authority (WYCA), including
-Leeds, Calderdale, Bradford, Kirklees and Wakefield.
-For Leeds, on which our prototype was based, the flow data contains 10,536
-origin-destination pairs. An example of this data is present in Table 1.
 
 ```{r, echo=FALSE}
-# library(knitr)
-# kable(fl_present[1:5, ])
+# Appendix: data sources
+
+# The data used for this project is publicly available. We selected 
+# datasets based on their ability to help explain the high or low rate of 
+# cycling in different areas, and to guide future active travel policies, 
+# such as the construction of new bicycle paths and dedicated bicycle 
+# parking facilities. Specifically, we used the following datasets:
+# 
+# - Data on travel to work flows between medium super output areas
+# (MSOAs) --- 'origin-destination flow data'. This data has recently (summer 2014)
+# been made available to the public through the Open Government Licence (OGL):  .
+# There are 107 MSOA zones that comprise the Local Authority of Leeds.
+# The input dataset could easily be expanded to incorporate all 300 MSOA zones
+# of the West Yorkshire Combined Authority (WYCA), including
+# Leeds, Calderdale, Bradford, Kirklees and Wakefield.
+# For Leeds, on which our prototype was based, the flow data contains 10,536
+# origin-destination pairs. An example of this data is present in Table 1.
+# 
+# ```{r, echo=FALSE}
+# # library(knitr)
+# # kable(fl_present[1:5, ])
+# 
+# ```
+# 
+# |Origin    |Destination | Total| Bicycle| lon_origin| lat_origin|  lon_dest|
+# |:---------|:-----------|-----:|-------:|----------:|----------:|---------:|
+# |E02002330 |E02002330   |    66|       1|  -1.400577|   53.92915| -1.400577|
+# |E02002330 |E02002331   |   742|      38|  -1.400577|   53.92915| -1.347653|
+# |E02002330 |E02002332   |     2|       0|  -1.400577|   53.92915| -1.705267|
+# |E02002330 |E02002333   |     9|       2|  -1.400577|   53.92915| -1.687695|
+# |E02002330 |E02002334   |    50|       1|  -1.400577|   53.92915| -1.357652|
 
 ```
 
-|Origin    |Destination | Total| Bicycle| lon_origin| lat_origin|  lon_dest|
-|:---------|:-----------|-----:|-------:|----------:|----------:|---------:|
-|E02002330 |E02002330   |    66|       1|  -1.400577|   53.92915| -1.400577|
-|E02002330 |E02002331   |   742|      38|  -1.400577|   53.92915| -1.347653|
-|E02002330 |E02002332   |     2|       0|  -1.400577|   53.92915| -1.705267|
-|E02002330 |E02002333   |     9|       2|  -1.400577|   53.92915| -1.687695|
-|E02002330 |E02002334   |    50|       1|  -1.400577|   53.92915| -1.357652|
+
