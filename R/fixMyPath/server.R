@@ -36,21 +36,7 @@ shinyServer(function(input, output){
   map <- leaflet() %>%
     addTiles(urlTemplate = "http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png")
   
-  zoom <- reactive({
-    ifelse(is.null(input$map_zoom),11,input$map_zoom)
-  })
-  
-  center <- reactive({
-    if(is.null(input$map_bounds)) {
-      c(-1.549167, 53.799722)
-    } else {
-      map_bounds <- input$map_bounds
-      c((map_bounds$north + map_bounds$south)/2.0,(map_bounds$east + map_bounds$west)/2.0)
-    }
-  })
-  
   output$map = renderLeaflet(map%>%
-                                 setView(-1.549167, 53.799722, zoom()) %>%
                                  addPolygons(data = leeds
                                              , fillOpacity = 0.4
                                              , opacity = (input$transp_zones)*.4
@@ -68,7 +54,9 @@ shinyServer(function(input, output){
                                                   , radius = 2
                                                   , color = "black"
                                                   , popup = sprintf("<b>Journeys by bike: </b>%s%%", round(ldata$pCycle*100,2))) %>%
-                                 addGeoJSON(RJSONIO::fromJSON(sprintf("%s.geojson", input$feature)))
+                                 addGeoJSON(RJSONIO::fromJSON(sprintf("%s.geojson", input$feature))) %>%
+                                 mapOptions(zoomToLimits = "first")
+
   )
 })
 
