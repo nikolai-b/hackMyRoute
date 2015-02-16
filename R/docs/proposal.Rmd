@@ -110,20 +110,19 @@ simply. When the user has found routes that are of interest,
 he or she will be able to plot the current safest route for cyclists
 and to see where it could be made more direct.
 
-We will use 'agile development' to  
-prioritise the workflow. Based on real-time user feedback and testing,
-the tool will undergo continual  and rapid refinement.
-The open-source nature of the tool will ensure that the 
-end result will not be a static 
-piece of software but a collaborative process between the developers, 
+We will use 'agile development' to prioritise the workflow. Based 
+on real-time user feedback and testing, the tool will undergo 
+continual and rapid refinement. The open-source nature of the 
+tool will ensure that the end result will not be a static piece 
+of software but a collaborative process between the developers, 
 planners and other users.
 
-The project will build-on and complement existing research activity 
-being undertaken at the University of Leeds, and with data layer-based 
-work by CycleStreets Ltd (who run the UK cycle journey planner at 
-cyclestreets.net). If it commissions this work, West Yorkshire could
-be an early adopter of a powerful tool that will eventually be deployed
-nationwide.
+The project will build-on and complement existing research 
+activity being undertaken at the University of Leeds, and with 
+data layer-based work by CycleStreets Ltd (who run the UK cycle 
+journey planner at cyclestreets.net). If it commissions this 
+work, West Yorkshire could be an early adopter of a powerful tool 
+that could eventually be deployed nationwide.
 
 # Why is this different to current software?
 
@@ -179,10 +178,10 @@ grid.raster(img)
 The proposed work will cost in the region of £5,000 to £40,000 depending on the
 features and specification of the tool:
 
-- The £5,000 option will extend the existing tool accross all of West Yorkshire and 
+- The £5,000 option will extend the existing tool across all of West Yorkshire and 
 allow the user to select the origin-destination flows of interest based on multiple criteria.
-- £10,000 will pay for the previous step and deployment of the tool in a
-simple smartphone app to encourage user engagement, testing and feedback.
+- £12,000 will pay for the previous step and deployment of the tool in a
+simple prototype smartphone app to encourage user engagement, testing and feedback.
 - £20,000 will pay for the previous steps and additional work to allow for the
 the display of propensity to cycle between all MSOA zones
 (containing on average 7,000 people) in West Yorkshire on desktop computers.
