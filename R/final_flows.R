@@ -61,50 +61,35 @@ saveRDS(l, "R/fixMyPath/lines.Rds")
 # Extract the ones to plot #
 # # # # # # # # # # # # #  #
 
-# Top ecp (extra cycling potential)
-t10 <- head(order(flows$ecp, decreasing = TRUE), 10)
-write.csv(t10, "al-flow.csv")
-top_ecp <- flows[t10,]
-
-summary(top_ecp$ecp)
-summary(flows$ecp)
+# Intersting routes (top and bottom ecp, pc and p_cycle)
+head_tail <- c(flows[head(order(flows$ecp),10),]$ids, flows[tail(order(flows$ecp),10),]$ids)
+head_tail <- c(head_tail, flows[head(order(flows$p_cycle),10),]$ids, flows[head(order(flows$p_cycle),10),]$ids)
+head_tail <- c(head_tail, flows[head(order(flows$pc),10),]$ids, flows[head(order(flows$pc),10),]$ids)
+head_tail <- unique(head_tail)
 
 # How good is the estimate of cycling potential?
 plot(flows$pc, flows$Bicycle)
 cor(flows$pc, flows$Bicycle)
-
-# Top difference in distances
-
-# Top Cycled distances
-
-
-
-
-
 
 
 # Saving the routes
 library(rgdal)
 library("maptools")
 source("R/sp-patch.R")
-fns <- paste0(top_ecp$ids, "-")
 
-al <-  readOGR("local-data/10022-quiet.txt", layer = "OGRGeoJSON")
-
-for(i in fns){
-  rfile <- list.files(path = "local-data/", pattern = i, full.names = T)
+al <- NULL
+for(i in head_tail){
+  rfile <- list.files(path = "local-data/", pattern = paste("^", toString(i), "-", sep=""), full.names = T)
   for(j in rfile){
     l <- readOGR(j, layer = "OGRGeoJSON")
-    # l@lines # why?
+    rfile
     spChFIDs(l) <- j
-    # if(is.null(al)) al <- l
-    # else al <- spRbind(al, l)
-    al <- spRbind(al, l)
-
+    if(is.null(al)) al <- l
+    else al <- spRbind(al, l)
+    #al <- spRbind(al, l)
   }
 }
 
-al <- al[-1,]
 plot(al)
 # writeOGR(al, layer = "shape1", dsn = "/tmp/", driver = "ESRI Shapefile")
 saveRDS(al, "R/fixMyPath/al.Rds")
