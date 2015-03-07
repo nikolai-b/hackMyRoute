@@ -56,16 +56,16 @@ for(i in 1:nrow(flows)){
 l <- SpatialLines(l)
 l <- SpatialLinesDataFrame(l, data = flows, match.ID = F)
 object.size(l) / 1000000
-saveRDS(l, "R/fixMyPath/lines.Rds")
+saveRDS(l, "R/fixMyPath/l.Rds")
 
 # # # # # # # # # # # # #  #
 # Extract the ones to plot #
 # # # # # # # # # # # # #  #
 
 # Intersting routes (top and bottom ecp, plc and clc)
-head_tail <- c(flows[head(order(flows$ecp),10),]$ids, flows[tail(order(flows$ecp),10),]$ids)
-head_tail <- c(head_tail, flows[head(order(flows$clc),10),]$ids, flows[head(order(flows$clc),10),]$ids)
-head_tail <- c(head_tail, flows[head(order(flows$plc),10),]$ids, flows[head(order(flows$plc),10),]$ids)
+head_tail <- rbind(flows[head(order(flows$ecp),10),], flows[tail(order(flows$ecp),10),])
+head_tail <- rbind(head_tail, flows[head(order(flows$clc),10),], flows[head(order(flows$clc),10),])
+head_tail <- rbind(head_tail, flows[head(order(flows$plc),10),], flows[head(order(flows$plc),10),])
 head_tail <- unique(head_tail)
 
 # How good is the estimate of cycling potential?
@@ -76,21 +76,29 @@ cor(flows$plc, flows$Bicycle)
 # Saving the routes
 library(rgdal)
 library("maptools")
-source("R/sp-patch.R")
 
 al <- NULL
-for(i in head_tail){
-  rfile <- list.files(path = "local-data/", pattern = paste("^", toString(i), "-", sep=""), full.names = T)
+for(i in 1:nrow(head_tail)){
+  rfile <- list.files(path = "local-data/", pattern = paste0("^", head_tail[i,]$ids, "-"), full.names = T)
   for(j in rfile){
     l <- readOGR(j, layer = "OGRGeoJSON")
-    rfile
-    spChFIDs(l) <- j
-    if(is.null(al)) al <- l
+    if(grepl("fast", j)){
+      da <- rename(head_tail[i,], d = fastest_distance_in_m, t = fastest_time_in_s)
+      l <- SpatialLinesDataFrame(l, data = select(da, d, t, ecp, clc, plc), match.ID = F)
+      l$route <- "fast"
+    }else{
+      da <- rename(head_tail[i,], d = quietest_distance_in_m, t = quietest_time_in_s)
+      l <- SpatialLinesDataFrame(l, data = select(da, d, t, ecp, clc, plc), match.ID = F)
+      l$route <- "quiet"
+    }
+    row.names(l) = toString(j)
+    if(is.null(al)) {
+      al <- l
+      row.names(al) = toString(i)
+    }
     else al <- spRbind(al, l)
-    #al <- spRbind(al, l)
   }
 }
 
-plot(al)
 # writeOGR(al, layer = "shape1", dsn = "/tmp/", driver = "ESRI Shapefile")
 saveRDS(al, "R/fixMyPath/al.Rds")
