@@ -18,14 +18,15 @@ names(fl)
 
 # flows to present
 library("dplyr")
-fl_present <- select(fl, Area.of.residence, Area.of.workplace, All.categories..Method.of.travel.to.work, Bicycle, lon_origin,  lat_origin, lon_dest, lon_dest)   # fl dataset to present
-fl_present <- rename(fl_present, Origin = Area.of.residence, Destination = Area.of.workplace, Total = All.categories..Method.of.travel.to.work)
-
+fl_present <- select(fl, Area.of.residence, Area.of.workplace, All.categories..Method.of.travel.to.work, Bicycle, lon_origin,  lat_origin, lon_dest, lat_dest, ecp, p_cycle, pc, dist)   # fl dataset to present
+fl <- rename(fl_present, Origin = Area.of.residence, Destination = Area.of.workplace, Total = All.categories..Method.of.travel.to.work, clc = p_cycle, plc = pc)
+names(fl_present)
 # Test the datasets join-up
-# fl$lon_dest[1:5] == f$lon_dest[1:5]
-# summary(fl$lon_dest == f$lon_dest)
-# summary(fl$lat_origin == f$lat_origin)
-# summary(fl$lat_origin == f$lat_origin)
+ fl$lon_dest[1:5] == f$lon_dest[1:5]
+#  summary(fl$lon_dest == f$lon_dest)
+#  summary(fl$lon_origin == f$lon_origin)
+#  summary(fl$lat_origin == f$lat_origin)
+#  summary(fl$lat_origin == f$lat_origin)
 
 f <- f[c(1, 6:9)]
 names(f)
@@ -61,15 +62,15 @@ saveRDS(l, "R/fixMyPath/lines.Rds")
 # Extract the ones to plot #
 # # # # # # # # # # # # #  #
 
-# Intersting routes (top and bottom ecp, pc and p_cycle)
+# Intersting routes (top and bottom ecp, plc and clc)
 head_tail <- c(flows[head(order(flows$ecp),10),]$ids, flows[tail(order(flows$ecp),10),]$ids)
-head_tail <- c(head_tail, flows[head(order(flows$p_cycle),10),]$ids, flows[head(order(flows$p_cycle),10),]$ids)
-head_tail <- c(head_tail, flows[head(order(flows$pc),10),]$ids, flows[head(order(flows$pc),10),]$ids)
+head_tail <- c(head_tail, flows[head(order(flows$clc),10),]$ids, flows[head(order(flows$clc),10),]$ids)
+head_tail <- c(head_tail, flows[head(order(flows$plc),10),]$ids, flows[head(order(flows$plc),10),]$ids)
 head_tail <- unique(head_tail)
 
 # How good is the estimate of cycling potential?
-plot(flows$pc, flows$Bicycle)
-cor(flows$pc, flows$Bicycle)
+plot(flows$plc, flows$Bicycle)
+cor(flows$plc, flows$Bicycle)
 
 
 # Saving the routes
